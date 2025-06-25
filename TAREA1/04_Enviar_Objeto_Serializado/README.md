@@ -1,4 +1,8 @@
-# Análisis y Solución: Serialización para Enviar Objetos
+# 📝 Tarea: # Análisis y Solución: Serialización para Enviar Objetos
+
+> Solución y análisis del ejercicio.
+
+---
 
 Este documento desglosa la tarea de enviar 3 objetos de tipo `Dato`, donde cada procesador receptor debe calcular la edad máxima y mínima. Se analiza un código inicial que falla catastróficamente debido a la falta de serialización y se presenta una solución funcional que implementa este concepto correctamente.
 
@@ -107,7 +111,8 @@ for (int i = 0; i < 3; i++) {
     if (personas_recibidas[i].edad > max_edad) max_edad = personas_recibidas[i].edad;
     if (personas_recibidas[i].edad < min_edad) min_edad = personas_recibidas[i].edad;
 }
-printf("PID %d: Max=%d, Min=%d\n", pid, max_edad, min_edad);
+printf("PID %d: Max=%d, Min=%d
+", pid, max_edad, min_edad);
 ```
 
 ## 3. Comparativa de Resultados
@@ -127,3 +132,6 @@ PID 2: Edad máxima = 32, Edad mínima = 18
 PID 3: Edad máxima = 32, Edad mínima = 18
 ```
 Esta salida confirma que la serialización fue exitosa y permitió la correcta distribución y procesamiento de los datos. 
+
+---
+[Volver al README Principal](../../README.md)

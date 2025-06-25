@@ -1,4 +1,8 @@
-# Análisis y Solución: Suma de Arreglo Optimizada con Árboles
+# 📝 Tarea: # Análisis y Solución: Suma de Arreglo Optimizada con Árboles
+
+> Solución y análisis del ejercicio.
+
+---
 
 Este documento detalla una solución de alto rendimiento para el problema de la suma de un arreglo distribuido, contrastándola con un enfoque más simple pero menos escalable.
 
@@ -85,3 +89,6 @@ PID 2: La suma global final (optimizada) es = 12534
 PID 3: La suma global final (optimizada) es = 12534
 PID 1: La suma global final (optimizada) es = 12534
 ``` 
+
+---
+[Volver al README Principal](../../README.md)

@@ -1,4 +1,7 @@
-# Concepto: Comunicación Punto a Punto
+#  # Concepto: Comunicación Punto a Punto
+
+
+---
 
 La comunicación **Punto a Punto** es la operación más fundamental en la computación paralela. Consiste en el envío de un mensaje desde un proceso de origen a un único proceso de destino. Es el bloque de construcción sobre el cual se implementan patrones de comunicación más complejos.
 
@@ -45,7 +48,8 @@ El código de ejemplo demuestra este concepto de la forma más simple posible:
         if (n_mensajes > 0) {
             int dato_recibido;
             bsp_move(&dato_recibido, sizeof(dato_recibido));
-            printf("Procesador %d: He recibido el número %d.\n", bsp_pid(), dato_recibido);
+            printf("Procesador %d: He recibido el número %d.
+", bsp_pid(), dato_recibido);
         }
     }
     ```
@@ -59,3 +63,6 @@ bspcxx -o ejemplo_simple ejemplo_simple.cc
 # Ejecutar con 2 o más procesadores
 bsprun -n 2 ./ejemplo_simple
 ``` 
+
+---
+[Volver al Índice de Explicaciones](../README.md) | [Volver al README Principal](../../README.md)

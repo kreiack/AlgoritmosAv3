@@ -1,4 +1,8 @@
-# Ejercicio de Cómputo Colectivo: Operación de Reducción
+# 📝 Tarea: # Ejercicio de Cómputo Colectivo: Operación de Reducción
+
+> Solución y análisis del ejercicio.
+
+---
 
 ## 1. ¿Qué es una Operación de Reducción?
 
@@ -49,7 +53,8 @@ for (int i = 0; i < nprocs; i++) {
 }
 
 if (pid == 0) {
-    printf("La suma total es %lld\n", suma_total);
+    printf("La suma total es %lld
+", suma_total);
 }
 ```
 
@@ -64,3 +69,6 @@ Al ejecutar el código con 4 procesadores (`bsprun -np 4 ...`), la salida muestr
 ```text
 PID 0: La suma total (calculada en 2 superpasos) es = 258265
 ``` 
+
+---
+[Volver al README Principal](../../README.md)

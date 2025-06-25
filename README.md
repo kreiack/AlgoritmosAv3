@@ -1,36 +1,48 @@
-# Proyecto de Computación Paralela con BSP
+# Proyecto de Cómputo Paralelo y Algoritmos Distribuidos
 
-Este repositorio contiene una colección de ejercicios resueltos y material de estudio sobre los patrones fundamentales de la programación paralela utilizando el modelo **Bulk Synchronous Parallel (BSP)** y la biblioteca `bsponmpi`.
+Este repositorio es un compendio de implementaciones, ejercicios resueltos y material de estudio enfocado en los patrones fundamentales de la programación paralela. Utiliza el modelo **Bulk Synchronous Parallel (BSP)** a través de la biblioteca `bsponmpi` como base para la exploración de algoritmos distribuidos.
 
-## Estructura del Repositorio
+---
 
-El proyecto está organizado en dos directorios principales:
+## 🏛️ Estructura del Repositorio
 
-### 1. [`TAREA1/`](./TAREA1)
+El proyecto se divide en dos áreas principales, cada una con un propósito distinto:
 
-Este directorio contiene las soluciones a tres ejercicios específicos de programación paralela. Cada ejercicio incluye:
--   Un archivo `.cc.txt` con el enunciado original.
--   Un archivo `_resuelto.cc` con el código de la solución en C++.
--   Un archivo `.md` que explica el concepto paralelo subyacente utilizando el ejercicio como caso de estudio.
+| Directorio                                   | Propósito                                                                                                                              |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| 📁 [**`TAREA1/`**](./TAREA1/)                     | Contiene la resolución de una serie de **ejercicios prácticos** de programación paralela, cada uno en su propia carpeta auto-contenida. |
+| 🎓 [**`ExtraExplicaciones/`**](./ExtraExplicaciones/) | Funciona como una **base de conocimiento** teórica y práctica, explicando los patrones de comunicación y conceptos clave de BSP.     |
 
-Los ejercicios cubren:
--   **Suma de Arreglo:** Implementación de una operación de **Reducción** en dos superpasos.
--   **Ejemplo 2:** Demostración de comunicación **Punto a Punto** para enviar un arreglo.
--   **Ejemplo 3:** Uso de **Serialización** para enviar objetos y realizar un **Broadcast**.
+---
 
-### 2. [`ExtraExplicaciones/`](./ExtraExplicaciones)
+## 🚀 Compilación y Ejecución
 
-Este directorio es una base de conocimiento diseñada para ser un recurso de aprendizaje. Contiene explicaciones detalladas y ejemplos de código minimalistas para los conceptos y patrones de comunicación más importantes en BSP.
+Todos los programas de este repositorio se basan en la biblioteca `bsponmpi`. Para trabajar con ellos, se deben utilizar las herramientas que esta proporciona.
 
-Cada subdirectorio se enfoca en un único concepto y contiene:
--   Un archivo `explicacion.md` con la teoría y el análisis del patrón.
--   Uno o más archivos de código `ejemplo_*.cc` claros y comentados.
+> **Nota:** La biblioteca `bsponmpi` fue instalada y compilada localmente en la carpeta del mismo nombre, la cual está explícitamente ignorada por Git a través del archivo `.gitignore` para mantener el repositorio limpio de dependencias compiladas.
 
-Los temas cubiertos incluyen la comunicación punto a punto, broadcast, scatter, gather, reducción, all-to-all, serialización y el modelo de superpasos.
+### Proceso Estándar de Compilación y Ejecución
 
-## Compilación y Ejecución
+1.  **Compilar el Código Fuente:**
+    Utilice el comando `bspcc` para compilar los archivos `.cc`.
 
-Todos los ejemplos de C++ que utilizan la biblioteca BSP deben ser compilados con el compilador `bspcxx` y ejecutados con `bsprun`.
+    ```bash
+    # Sintaxis general
+    bspcc -o <nombre_del_ejecutable> <archivo_fuente.cc>
+    ```
+
+2.  **Ejecutar el Programa en Paralelo:**
+    Utilice `bsprun` para lanzar el programa en múltiples procesos. El flag `-np` especifica el número de procesos a utilizar.
+
+    ```bash
+    # Sintaxis general
+    bsprun -np <numero_de_procesos> ./<nombre_del_ejecutable>
+    ```
+
+---
+**Autor:** Pablo Antonio Jordán González  
+*Estudiante Doctorado Ciencias de la Ingeniería Mención Informática, Universidad de Santiago de Chile*  
+*Director de I+D HealthPixel Spa.*
 
 ```bash
 # Para compilar un archivo

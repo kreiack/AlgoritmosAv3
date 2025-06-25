@@ -1,3 +1,9 @@
+# फाउंडेशन 00 - Conceptos Fundamentales de BSP
+
+> Esta sección es el punto de partida. Antes de escribir código paralelo, es crucial entender el entorno de hardware y los comandos más básicos para compilar, ejecutar y identificar procesos.
+
+---
+
 # 01 - Inspección del Entorno Computacional
 
 Antes de escribir código paralelo, es fundamental comprender el hardware sobre el que se ejecutará. Conocer el número de procesadores y núcleos disponibles nos permite tomar decisiones informadas sobre cuántos procesos paralelos lanzar para obtener el máximo rendimiento.
@@ -194,4 +200,7 @@ La salida confirma que el proceso 0 envió el mensaje y el proceso 1 lo recibió
 Proceso 0 enviando el valor 2024 al proceso 1...
 Proceso 1 recibió el valor: 2024
 ```
-Nuevamente, el orden de las líneas puede variar, pero el contenido demuestra que la comunicación fue exitosa. 
+Nuevamente, el orden de las líneas puede variar, pero el contenido demuestra que la comunicación fue exitosa.
+
+---
+[Volver al Índice de Explicaciones](../README.md) | [Volver al README Principal](../../README.md) 

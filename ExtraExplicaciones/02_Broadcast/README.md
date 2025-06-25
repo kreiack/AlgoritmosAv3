@@ -1,4 +1,7 @@
-# Concepto: Broadcast (Uno a Todos)
+#  # Concepto: Broadcast (Uno a Todos)
+
+
+---
 
 Un **Broadcast** (o difusión) es una operación de comunicación colectiva fundamental en la que un único proceso, comúnmente denominado "raíz" (root), envía el mismo mensaje a todos los demás procesos en el grupo de cómputo (incluyéndose a sí mismo).
 
@@ -40,7 +43,8 @@ El código de ejemplo implementa un broadcast de un único entero.
     // Todos los procesadores ejecutan esto
     int dato_recibido;
     bsp_move(&dato_recibido, sizeof(dato_recibido));
-    printf("Procesador %d: He recibido el número %d.\n", pid, dato_recibido);
+    printf("Procesador %d: He recibido el número %d.
+", pid, dato_recibido);
     ```
 
 ## Para Compilar y Ejecutar
@@ -52,3 +56,6 @@ bspcxx -o ejemplo_simple ejemplo_simple.cc
 # Ejecutar con varios procesadores
 bsprun -n 4 ./ejemplo_simple
 ``` 
+
+---
+[Volver al Índice de Explicaciones](../README.md) | [Volver al README Principal](../../README.md)
