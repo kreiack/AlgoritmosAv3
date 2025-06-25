@@ -40,9 +40,12 @@ Todos los programas de este repositorio se basan en la biblioteca `bsponmpi`. Pa
     ```
 
 ---
-**Autor:** Pablo Antonio Jordán González  
-*Estudiante Doctorado Ciencias de la Ingeniería Mención Informática, Universidad de Santiago de Chile*  
-*Director de I+D HealthPixel Spa.*
+
+## ✍️ Autoría y Contribuciones
+
+Este proyecto fue desarrollado en el marco del curso **Algoritmos Avanzados y Complejidad Computacional**, parte del programa de **Doctorado en Ciencias de la Ingeniería con mención en Informática** de la Universidad de Santiago de Chile.
+
+> La estructura, documentación y refactorización de este repositorio fueron realizadas con la asistencia de Inteligencia Artificial (Gemini 2.5 Pro) para asegurar un alto estándar de calidad y claridad.
 
 ```bash
 # Para compilar un archivo
