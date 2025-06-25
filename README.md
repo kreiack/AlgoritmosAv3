@@ -40,5 +40,3 @@ bspcxx -o mi_ejecutable mi_codigo.cc
 bsprun -n 4 ./mi_ejecutable
 ```
 
----
-*Este repositorio fue desarrollado con la asistencia de un modelo de IA como herramienta de pair programming y tutoría.* 
