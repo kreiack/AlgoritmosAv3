@@ -49,7 +49,7 @@ if (pid == 0) {
     printf("La suma total es %lld\n", suma_total);
 }
 ```
-> **Análisis de Costo:** Esta técnica combina implícitamente una **reducción** y un **broadcast**, pero a un costo comunicacional de **O(P²)**, lo que la hace ineficiente para un gran número de procesadores.
+> **🥪 No Hay Almuerzos Gratis:** Esta técnica combina implícitamente una **reducción** y un **broadcast**, logrando el objetivo en solo dos superpasos. Sin embargo, el "almuerzo" no es gratis: se paga con un costo comunicacional de **O(P²)**, lo que la hace ineficiente para un gran número de procesadores.
 
 ## 3. Resultado de la Ejecución
 
