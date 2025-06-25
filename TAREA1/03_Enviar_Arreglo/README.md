@@ -1,4 +1,8 @@
-# Análisis y Solución: Enviar un Arreglo por Comunicación Punto a Punto
+# 2️⃣ Análisis y Solución: Enviar un Arreglo por Comunicación Punto a Punto
+
+> Análisis y ejemplo de código del concepto **Análisis y Solución: Enviar un Arreglo por Comunicación Punto a Punto**.
+
+---
 
 Este documento analiza la tarea de modificar un código para enviar un arreglo de `N` datos. Se parte de un código de ejemplo que realiza una operación diferente (un broadcast de un entero), se explica por qué no cumple el objetivo, y se presenta la solución correcta basada en comunicación punto a punto.
 
@@ -32,7 +36,8 @@ for(i=0; i<nm; i++)
 {
    bsp_get_tag(&total,&tag);
    bsp_move(&dato,total);
-   printf("pid %d recibio dato %d\n",pid,dato);
+   printf("pid %d recibio dato %d
+",pid,dato);
 }
 ```
 
@@ -84,9 +89,11 @@ if (pid == 1) {
     int arreglo_recibido[N];
     bsp_move(arreglo_recibido, N * sizeof(int));
     
-    printf("PID %d: Arreglo recibido:\n", pid);
+    printf("PID %d: Arreglo recibido:
+", pid);
     for (int i = 0; i < N; i++) {
-        printf("  arreglo[%d] = %d\n", i, arreglo_recibido[i]);
+        printf("  arreglo[%d] = %d
+", i, arreglo_recibido[i]);
     }
 }
 ```
@@ -115,3 +122,8 @@ PID 1: Arreglo recibido:
   arreglo[9] = 100
 ```
 Esta salida confirma que la solución cumple con el objetivo de la tarea: un envío punto a punto de un arreglo. 
+
+---
+[Volver al Índice Anterior](../README.md) | [Volver al README Principal](../../README.md)
+
+> *Documentación mejorada con la asistencia de IA.*
