@@ -1,0 +1,92 @@
+extern "C" {
+   #include <bsp.h>
+   }
+  
+   #include <stdio.h>
+  
+   #include <string.h>
+  
+   int   nm,    // numero de mensajes que recibe cada procesador.
+        nb,    // total de bytes en la cola de mensajes.
+        tag,   // identificador (header) de mensajes (no lo usamos).
+        sztag, // tama o del indentificador.
+        total; // tama o en bytes del siguiente mensaje a ser sacado
+               // de la cola de nuevos mensajes en el procesador.
+ 
+ 
+  #include <list>
+  using namespace std;
+ 
+  class Dato
+  {
+   public:
+    int edad;
+    char *nombre;
+    char *apellido;
+ 
+    Dato( int e, char *n, char *a)
+    {
+      edad = e;
+      nombre = new char[strlen(n)];
+      apellido = new char[strlen(a)];
+    }
+  };
+void bsp_main()
+  {
+ 
+    bsp_begin( bsp_nprocs() );
+ 
+    int pid= bsp_pid();
+    int nprocs= bsp_nprocs();
+ 
+    tag = 0;
+    sztag= sizeof(int);
+ 
+    bsp_set_tagsize(&sztag);
+ 
+ 
+    list<Dato*> listaPersonas;
+ 
+    char n11[20];
+    char a11[20];
+ 
+    if (pid==0)
+    {
+ 
+      strcpy(n11,"n1");
+      strcpy(a11,"a1");
+      listaPersonas.push_back( new Dato(1,n11,a11) );
+      strcpy(n11,"n2");
+      strcpy(a11,"a2");
+      listaPersonas.push_back( new Dato(2,n11,a11) );
+      strcpy(n11,"n33");
+      strcpy(a11,"a33");
+      listaPersonas.push_back( new Dato(3,n11,a11) );
+ 
+      // el procesador 0 hace un broadcast de toda la lista.
+ 
+      for(int i=0;i<nprocs;i++)
+      {
+          // ERROR: hay que serializar!!
+ 
+         bsp_send(i, &tag, &listaPersonas, listaPersonas.size());
+  }
+ 
+    }
+ 
+    bsp_sync();
+ 
+    bsp_end();
+  }
+ 
+ 
+  int main (int argc, char *argv[])
+  {
+     void bsp_main();
+ 
+     bsp_init(bsp_main, argc, argv);
+ 
+     bsp_main();
+ 
+     return 0;
+  }

@@ -1,0 +1,8 @@
+# Ignorar la biblioteca BSPonMPI, sus artefactos de compilación y fuentes
+bsponmpi/
+
+# Ignorar todos los ejecutables compilados
+*.exec
+TAREA1/ejemplo2_resuelto
+TAREA1/ejemplo3_resuelto
+TAREA1/sumaarreglo_resuelto 

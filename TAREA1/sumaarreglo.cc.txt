@@ -1,0 +1,115 @@
+1 extern "C" {
+  2 #include <bsp.h>
+  3 }
+  4
+  5 #include <stdio.h>
+  6 #include <stdlib.h>
+  7 #include <time.h>
+  8
+  9 int   nm,    // numero de mensajes que recibe cada procesador.
+ 10       nb,    // total de bytes en la cola de mensajes.
+ 11       tag,   // identificador (header) de mensajes (no lo usamos).
+ 12       sztag, // tama o del indentificador.
+ 13       total; // tama o en bytes del siguiente mensaje a ser sacado
+ 14              // de la cola de nuevos mensajes en el procesador.
+ 15
+ 16
+ 17
+ 18 void bsp_main()
+ 19 {
+ 20
+ 21   bsp_begin( bsp_nprocs() );
+ 22
+ 23   int pid= bsp_pid();
+ 24   int nprocs= bsp_nprocs();
+ 25
+ 26   tag = 0;
+ 27   sztag= sizeof(int);
+ 28
+ 29   bsp_set_tagsize(&sztag);
+ 30
+ 31   int N=128;
+ 32   int *arreglo=new int[N];
+ 33
+ 34   // inicializacion del arreglo.
+ 35   srand(pid*111+111+time(NULL));
+ 36
+ 37   for(int i=0; i<N; i++)
+ 38     arreglo[i]= rand()%1024;
+ 39
+ 40
+41   // Cada procesador calcula la suma.
+ 42
+ 43   int suma=0;
+ 44   for(int i=0; i<N; i++)
+ 45     suma += arreglo[i];
+ 46
+ 47 // Superstep 1:
+ 48
+ 49   // cada procesador le envia al procesador 0
+ 50   // el resultado parcial de la suma global.
+ 51
+ 52   bsp_send(0, &tag, &suma, sizeof(int));
+ 53
+ 54   bsp_sync(); // debe ir aqui para producir el envio
+ 55               // efectivo de los mensajes.
+ 56
+ 57 // Superstep 2:
+ 58
+ 59   // lee cuantos mensajes llegaron (nm)
+ 60   // y cual es la cantidad total de bytes recibidos (nb).
+ 61
+ 62   if (pid==0)
+ 63   {
+ 64      bsp_qsize(&nm, &nb); // numero de mensajes recibidos.
+ 65
+ 66      // extrae los mensajes uno por uno desde la cola
+ 67      // de mensajes.
+ 68
+ 69      int suma_parcial, suma_global=0;
+ 70
+ 71      for(int i=0; i<nm; i++)
+ 72      {
+ 73        // solo procesador 0 aqui.
+ 74        //If total has  the  value  -1 then the buffer is empty
+ 75        //therwise it becomes the length of the payload of the  first  message  in the buffer.
+ 76        bsp_get_tag(&total,&tag);
+ 77        //moves the first mgs of size total
+ 78        bsp_move(&suma_parcial,total);
+ 79        suma_global += suma_parcial;
+ 80      }
+ 81
+ 82      for(int i=0; i<nprocs; i++)
+ 83         bsp_send(i, &tag, &suma_global, sizeof(int));
+ 84   }
+ 85
+ 86   bsp_sync();
+ 87
+ 88 // Superstep 3:
+ 89
+ 90   int resultado;
+ 91
+ 92   bsp_get_tag(&total,&tag);
+ 93   bsp_move(&resultado,total);
+ 94
+ 95  // if (pid==1)
+ 96   //{
+ 97      printf("PID %d El resultado es = %d\n",pid,resultado);
+ 98   //}
+ 99
+100   bsp_sync();
+101   bsp_end();
+102
+103 }
+104
+105
+106 int main (int argc, char *argv[])
+107 {
+108    void bsp_main();
+109
+110    bsp_init(bsp_main, argc, argv);
+111
+112    bsp_main();
+113
+114    return 0;
+115 }

@@ -1,0 +1,54 @@
+extern "C" {
+ #include <bsp.h>
+ }
+
+#include <stdio.h>
+ 
+#include <string.h>
+
+void bsp_main()
+  {
+      // ojo: bsp_begin() debe ir primero.
+      bsp_begin( bsp_nprocs() );
+      int i, p, // numero de procesadores.
+      pid, // indentificador del proceso (procesador)
+      dato,  // dato a ser enviado y recibido.
+      nm, // numero de mensajes que recibe cada procesador.
+      nb,  // total de bytes en la cola de mensajes.
+      tag, // identificador (header) de mensajes (no lo usamos).
+      sztag, // tamaño del indentificador.
+      total; // tamaño en bytes del siguiente mensaje a ser sacado
+            // de la cola de nuevos mensajes en el procesador.
+      tag = 0;
+      sztag= sizeof(int);
+      bsp_set_tagsize(&sztag);
+     p= bsp_nprocs();
+      pid = bsp_pid();
+ 
+      if (pid==0)
+      // procesador 0 envia un dato a todos.
+      {    dato= 4;
+           for(i=0;i<p;i++)
+           { bsp_send(i, &tag, &dato, sizeof(int)); }
+      }
+      bsp_sync();
+      // lee cuantos mensajes llegaron (nm)
+      // y cual es la cantidad total de bytes recibidos
+      bsp_qsize( &nm, &nb);
+      // numero de mensajes recibidos.
+      for(i=0; i<nm; i++)
+      {
+         bsp_get_tag(&total,&tag);
+         bsp_move(&dato,total);
+         printf("pid %d recibio dato %d\n",pid,dato);
+      }
+      bsp_end();
+ }
+
+int main (int argc, char *argv[])
+  {
+          void bsp_main();
+          bsp_init(bsp_main, argc, argv);
+          bsp_main();
+          return 0;
+  }
